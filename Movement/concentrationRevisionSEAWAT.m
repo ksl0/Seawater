@@ -8,20 +8,21 @@
 % University of Delaware
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Set up variables
+%% Set up constants
 datFile = 'C1_17.mat';
 baseFile = 'Test.btn';
 outFileName = 'NewTest.btn';
 HEADER_TEXT = ' 103'; %used to match on a header
-nCCopy = 405;
+nCCopy = 405; % unknown how to find this number
+              % used to skip lines to copy
 
 %% Start of script
 fout = fopen(outFileName, 'wt');
 mat = matfile(datFile); 
-cMat = mat.C;
-%A 2D concentration matrix of salinity
+cMat = mat.C; % extract variable
 %columns from left to right go sea to landward
-[rows, cols] = size(cMat);
+% solute concentrations should be in ML-3
+[rows, cols] = size(cMat); %salinity matrix
 fid = fopen(baseFile,'r');
 
 tic;
