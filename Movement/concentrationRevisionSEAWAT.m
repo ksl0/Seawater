@@ -9,9 +9,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Set up constants
-datFile = 'C1_17.mat';
-baseFile = 'Test.btn';
-outFileName = 'NewTest.btn';
+datFile = 'C6_1.mat';
+baseFile = 'OldTest.btn';
+outFileName = 'Test.btn';
 HEADER_TEXT = ' 103'; %used to match on a header
 nCCopy = 405; % unknown how to find this number
               % used to skip lines to copy
