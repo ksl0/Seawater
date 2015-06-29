@@ -2,17 +2,21 @@
 % 06/23/2015
 % Uses MFlab to modify data
 
+% set up the names for the input files
 basename = 'OldTest.btn';
-newFileName = 'TestingMFlab';
+newFileName = 'Test-wmod';
 
-btn = [];
+btn = []; %initialize the btn variable to an empty array
 btn = readBTN(basename, btn);
-%{
+
+
 datFile = 'C6_1.mat';
 mat = matfile(datFile); cMat = mat.C; % extract variable
 [row, col] = size(cMat);
 
-conc = btn.STCONC; [row2, col2] = size(cell2mat(conc));
+
+% check size of the two arrays
+[row2, col2] = size(cell2mat(btn.STCONC));
 
 if (row == col2 && col == row2)
     cMat = transpose(cMat);
@@ -29,7 +33,6 @@ end;
 
 
 btn.ext = 'btn';
-btn.Z = btn.DZ;
-%}
+btn.Z = btn.DZ; % attempt to guess what the btn.Z parameter refers to
 
 writeBTN(newFileName, btn);
