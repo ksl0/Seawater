@@ -1,0 +1,24 @@
+﻿Week 1: 06/22/2014
+* Create matlab script to change BTN data: https://gist.github.com/ksl0/dcfc87bf7289087c3134 
+   * visualize output with model viewer to check orientation
+   * write tests to guarantee functionality of the code
+* Complete annotated bibliography for the 5 papers emailed,[a] and an additional 3 other papers 
+* Read through chapters 3,5 (maybe 7) in Applied Hydrogeology
+* Create discretizations: 250 x 1.5m, 125 x 3m, and 125 x 1.5m on Argus One
+* Other: set up remote desktop connection
+
+
+
+
+Week 2: 06/29/2015
+* Find the optimum discretization
+   * Finish discretizations from ArgusONE
+   * Using matlab, revise the btn files with closer saltwater concentrations
+   * Run Kaileight’s code,  maybe mflab, rewrite lpf files for each realization
+* Gain deeper understanding of seawater intrusion, through modeling, other two texts, more papers
+* Start on project to determine the effect of dispersivity on homogenous v. heterogenous systems
+
+
+
+
+[a]Still need to read Smith's technical paper

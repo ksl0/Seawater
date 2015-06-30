@@ -1,0 +1,42 @@
+﻿* Reillly and Goodman, 1985. Quantitative analysis of Saltwater - freshwater relationships in groundwater systems - a historical perspective. 
+   * Hubbert - related freshwater head, saltwater head to position of water interface
+      * improved previous Ghyben-Herzberg principle
+   * z = density freshwater / (density freshwater - density saltwater) * H
+   * z == 40h w/ simplifaction
+   * assumptions of models
+      * 3D analysis of systems often contains many assumptions, i.e. a sharp interface, density distribution
+      * many models ignore the influence of wells and resulting upconing
+   * critical pumping rate: the deepest place a well cone remains stable (no saltwater intrusion in the longterm into the well)
+* Applied Hydrology textbook
+   * vadose zone (zone of aereation): a soil region which contains air and water
+   * water table (zone of saturation), even deeper is magmatic water
+   * currents caused by differences in temperature, salinity. Ex, above 38 lat, net heat loss, but below 38 lat, net head gain
+* Moore, Willard. 2009. The Effect of Submarine Groundwater Discharge on the Ocean.
+   * Submarine grondwater discharge (SGD): a source of nutrients, carbon, metals to coastal waters
+      * included in ocean budget; can exceed fluxes to rivers
+      * lags between freshwater recharge and discharge
+   * measured using: thermal imaging (Groundwater temp), radium, electro. 
+* Werner, 2012. Seawater intrusion process, investigation, and management: Recent advances and future challenges
+   * Seawater intrusion (SI) influenced by pumping, sea-level fluctuations, land-use changes, coastal groundwater changes
+   * “Henry Problem”: an idealized seawater intrusion problem
+   * mixing zones: high variability and mobility
+      * range from meters to kilometers
+      * change based on seasonal variations
+   * scale of heterogenities important due to preferential flow paths
+   * wells can change mixing zone thickness
+   * surface water injections at toe penetration are most effective
+* Smith, Anthony (2003). Mixed convection and density-dependent seawater circulation in coastal aquifers
+   * A highly technical paper that also focuses on SGD
+   * * Fresh and saline groundwater discharge to the ocean: A regional perspective
+   * Describes the effects of topography driven flow, coastal seawater recirculation, geothermal convection
+      * creates a conceptual model for long-term SGD with large 10-100’s km scale
+      * places coastal fow in regional context, fresh and saline part in SGD
+      * a good resource for modeling and testing numerical models
+   * analyzes how geothermal convection, seawater convection drive the SGD which is driven by density gradients
+   * determines whether regional flow is significant -- older water
+   * numerical stimulations
+      * coastal plane geometry more important than continental slope
+      * found that long time scales required for deep areas of mixing zone
+   * total flux increased slightly with an intcrease in dispersivity, horizonal width mixing zone decreased with smaller dispersivity
+* Bonnet and Sauty
+*
