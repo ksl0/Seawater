@@ -1,0 +1,5 @@
+import flopy
+## you need a directory with this file in it though
+m = flopy.modflow.Modflow()
+dis = flopy.modflow.ModflowDis(m, steady=True)
+lpf = flopy.modflow.ModflowLpf.load('modflowtest.lpf', m)

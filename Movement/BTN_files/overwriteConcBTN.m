@@ -1,6 +1,7 @@
 function overwriteConcBTN(datFile, baseFile, outFileName)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Intended to overwrite the .btn file with matrix data from matlab 
+% Intended to overwrite the concentration data in .btn file 
+% with matrix data from matlab 
 %
 % Katie Li
 % June 22, 2015
@@ -43,7 +44,6 @@ function overwriteConcBTN(datFile, baseFile, outFileName)
         fprintf(fout, '%s', tline);
         c = c+1;
     end
-
     tline = fgets(fid); %% read first line of baseFile into tline
     k = strsplit(tline, ' '); %separate them by line
     nBlocks = str2double(cell2mat(k(2))); %conversion into comparable format
@@ -53,6 +53,12 @@ function overwriteConcBTN(datFile, baseFile, outFileName)
         disp('Wrong size inputs'); % matricies do not align to correct sizes
         return;
     end
+
+
+    time = datestr(now, 29) %get current date
+    %Write header for SEAWATBTN file
+    str = sprintf('#BTN file created using MATLAB on %s', time);
+    fprintf(fid,'%s\r\n',str);  
 
     % A loop that copies over top part of file based on header counts
     % terminates by count of headers to skip
@@ -97,11 +103,3 @@ function overwriteConcBTN(datFile, baseFile, outFileName)
     fclose(fout);
 
     toc; % a timer to view the runtime of the program
-
-
-
-
-
-
-
-
