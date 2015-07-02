@@ -71,6 +71,7 @@ function overwriteConcBTN(arr, baseFile, outFileName)
         k = strfind(tline,HEADER_TEXT);
         if (isempty(k))
           %print a line from the matrix
+          
         else 
            h  = h+ 1; % increment header
         end
