@@ -52,7 +52,7 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     %% Write new header material
     k = []; %indicator value for header
     fgets(fid); %discard first line in the file, rewrite header in line below
-    tline = sprintf('Written with MATLAB lpfTransformer %s \n', datestr(now, 29)); 
+    tline = sprintf('#Written with MATLAB lpfTransformer %s \n', datestr(now, 29)); 
     
     % Copies over top part of input file to output file
     while isempty(k) %as long as the header has not been found

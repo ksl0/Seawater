@@ -12,7 +12,8 @@ LPF_INPUT = 'Profile5.30.mat'; % hydraulic conductivity data file
 BTN_file= 'Test.btn';  
 LPF_file = 'Test.lpf';  
 
-disc = {'disc1', 'disc2', 'disc3'}; % folders with input file by ArgusONE
+%disc = {'disc1', 'disc2', 'disc3'}; % folders with input file by ArgusONE
+disc = {'disc0'}; disp('short time period, temporary')%temporary for now... 
 tic;                                                                   
 for f = disc % for each discretization, run programs below
    folder = char(f);
@@ -22,5 +23,4 @@ for f = disc % for each discretization, run programs below
 end
 
 
-fprintf('Total running time is');
 toc;
