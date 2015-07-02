@@ -7,8 +7,8 @@
 %   - scripts 
 %   - input directory
 
-BTN_INPUT = 'C5_43.mat'; %concentration data file
-LPF_INPUT = 'case5_1.mat'; % hydraulic conductivity data file
+BTN_INPUT = 'C5_30.mat'; %concentration data file
+LPF_INPUT = 'Profile5.30.mat'; % hydraulic conductivity data file
 BTN_file= 'Test.btn';  
 LPF_file = 'Test.lpf';  
 
