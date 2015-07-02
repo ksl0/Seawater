@@ -28,9 +28,12 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     
     disp('Preparing to overwrite BTN file...');
     
-    arr = matfile(matName); arr = arr.C; %extract variable from matfile 
-    HEADER_TEXT = ' 103'; %used to match on a header
-    nCCopy = 405; % number headers before you reach the concentration data
+    arr = matfile(matName); arr = arr.C; %extract variable from matfile
+    HEADER_TEXT = '103        1. '; %used to match on a header
+    nCCopy = 539; % number headers before you reach the concentration data
+    % for some reason, it seems to be correlated to the stretch in x
+    % direction
+    % as in disc1 - 539, but disc2 - 271
     %TODO: calculate a way to find this numer
 
 
@@ -41,7 +44,8 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     %columns from left to right go sea to landward
     % solute concentrations should be in ML-3
     fid = fopen(baseFile,'r');
-
+    
+    disp(fout); disp(fid);
     %%% skips past two headers
     c = 0;
     while c < 2
@@ -49,8 +53,8 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
         fprintf(fout, '%s', tline);
         c = c+1;
     end
+    
     tline = fgets(fid); %% read first line of baseFile into tline
-       
     k = strsplit(tline, ' '); %separate them by line
  
     nrows = str2double(cell2mat(k(2))); %conversion into comparable format
@@ -65,13 +69,9 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     cd(strcat(BASE_DIR, scriptsDir)); % go to the scripts directory
     arr = discretizeArray(arr, XSTRETCH, ZSTRETCH);
     [rows, cols] = size(arr); %save size of salinity matrix    
-
-    [r, c] = size(arr);
-    
-    disp(ncols); disp(c); %check and print out sizes
-    disp(nrows); disp(r);
-    assert(ncols == c);
-    assert(nrows == r);
+     
+    assert(ncols == cols);   %check and print out sizes
+    assert(nrows == rows);
     
     time = datestr(now, 29); %get current date
     %Write header for SEAWATBTN file
@@ -100,12 +100,12 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     % needed for each header, which takes up a line. 
 
     for i  = 1:rows 
-        for j = (cols+1):-1:1  %401 cells in each block 
-          if  (j == (ncols+1))        % do not modify header
+        for j = (cols+1):-1:1  %cells in each block 
+          if  (j == (cols+1))        % do not modify header
         	fprintf(fout, '%s', tline);
           else %rewrite data
             newConc = arr(i, j); % newConc is the value to be written
-            fprintf(fout, '%d\n', newConc); 
+            fprintf(fout, '%d\n', newConc);
           end
           tline = fgets(fid); 
         end
