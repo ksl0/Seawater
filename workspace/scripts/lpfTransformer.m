@@ -1,7 +1,7 @@
 function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     % A file that overwrites an exisiting LPF file to it's format
     % usage: for disc1, a cell of 268 rows x 800 columns, run: 
-    %    lpfTransformer(268, 800, 'disc1', 'case5_1.mat', 'Test.lpf');
+    %    lpfTransformer(268, 800, 'disc1', 'Profile5.47.mat', 'Test.lpf');
     % Parameters
     % * nrows - vertical discretization
     % * ncols - horizontal discretization 
@@ -16,7 +16,7 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     cd(strcat(BASE_DIR, scriptsDir)); %start at the correct location
 
     Ss = 1e-4; %default value for specific storage
-    X_initial = 200; Z_initial= 134; %default for slice 
+    X_initial = 400; Z_initial= 134; %default for slice 
     ZSTRETCH = nrows/Z_initial;
     XSTRETCH = ncols/X_initial;
     % the X and Z discretization
@@ -24,7 +24,7 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     OUTPUT_NAME = 'modified_lpf.lpf';
     INPUT_FILE = inputFile;
     MATLAB_ARRAY = matFile; 
-    load(MATLAB_ARRAY); %load MATLAB array with hydraulic conductivity, 'c'
+    load(MATLAB_ARRAY); arr = Profile; %load MATLAB array with hydraulic conductivity, 'Profile'
 
     %headers to write to file
     HEADER_HK = 'INTERNAL 1.0 (FREE)   -1  ; HK(NCOL,NROW)';
@@ -41,8 +41,8 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     fid = fopen(INPUT_FILE, 'r');
     
     cd(strcat(BASE_DIR, scriptsDir)); %get back to scripts directory
-    arr = mapArray(c);  %convert the array (of values 0-3) to conductivity values
-
+%    arr = mapArray(Profile);  %convert the array (of values 0-3) to conductivity values
+    
     % transform array to correct dimensions based on discretization
     newArr = discretizeArray(arr, XSTRETCH, ZSTRETCH);
     

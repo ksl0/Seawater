@@ -16,7 +16,7 @@ function modArray =  mapArray(arr)
     A(4) = 1e-3;    %mc_sand 
     % will tell user if size is not right
     if (rawValue + OFFSET) > NKEYS || (rawValue + OFFSET) < 1
-        printf('Please check your raw values, %s is too big', rawValue);
+        fprintf('Please check your raw values, %s is too big \n', rawValue);
         return; %exit function 
     end 
     x = A(rawValue + OFFSET); % retrieve correct value from the array
