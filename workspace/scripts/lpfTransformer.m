@@ -1,7 +1,7 @@
-function lpfTransformer(nrows, ncols, inputFolderName)
+function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     % A file that overwrites an exisiting LPF file to it's format
-    % usage: for disc1, a cell of 268 rows x 800 columns
-    %         run lpfTransformer(268, 800, 'disc1');
+    % usage: for disc1, a cell of 268 rows x 800 columns, run: 
+    %    lpfTransformer(268, 800, 'disc1', 'case5_1.mat', 'Test.lpf');
     % Parameters
     % * nrows - vertical discretization
     % * ncols - horizontal discretization 
@@ -12,6 +12,8 @@ function lpfTransformer(nrows, ncols, inputFolderName)
     BASE_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/';
     scriptsDir = 'scripts/';
     HEADER_SUBSTRING = 'INTERNAL'; %indicates reaching a header line
+    
+    cd(strcat(BASE_DIR, scriptsDir)); %start at the correct location
 
     Ss = 1e-4; %default value for specific storage
     X_initial = 200; Z_initial= 134; %default for slice 
@@ -20,8 +22,8 @@ function lpfTransformer(nrows, ncols, inputFolderName)
     % the X and Z discretization
  
     OUTPUT_NAME = 'modified_lpf.lpf';
-    INPUT_FILE = 'Test.lpf';
-    MATLAB_ARRAY = 'case5_1.mat';
+    INPUT_FILE = inputFile;
+    MATLAB_ARRAY = matFile; 
     load(MATLAB_ARRAY); %load MATLAB array with hydraulic conductivity, 'c'
 
     %headers to write to file

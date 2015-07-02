@@ -1,7 +1,8 @@
-function overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
+function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Intended to overwrite the concentration data in .btn file 
 % with matrix data from matlab 
+% Returns the size of the matrix for use by other files
 %
 % Katie Li, katiesli16@gmail.com
 % June 22, 2015
@@ -15,13 +16,17 @@ function overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
 % arr: array containing the values to overwrite in correct orientation
 % baseFile: original BTN file used by SEAWAT
 % outFileName: name of the output file 
+% 
 
-% EXAMPLE: 
+% EXAMPLE USAGE: 
 %  overwriteConcBTN('C5_43.mat', 'Test.btn', 'modified_btn.btn', 'disc1');
+%
     BASE_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/';
     scriptsDir = 'scripts/';
     
     cd(strcat(BASE_DIR, scriptsDir)); % go to the scripts directory
+    
+    disp('Preparing to overwrite BTN file...');
     
     arr = matfile(matName); arr = arr.C; %extract variable from matfile 
     HEADER_TEXT = ' 103'; %used to match on a header
@@ -37,7 +42,6 @@ function overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
     % solute concentrations should be in ML-3
     fid = fopen(baseFile,'r');
 
-    tic; 
     %%% skips past two headers
     c = 0;
     while c < 2
@@ -64,8 +68,10 @@ function overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
 
     [r, c] = size(arr);
     
-    disp(ncols); disp(c);
+    disp(ncols); disp(c); %check and print out sizes
     disp(nrows); disp(r);
+    assert(ncols == c);
+    assert(nrows == r);
     
     time = datestr(now, 29); %get current date
     %Write header for SEAWATBTN file
@@ -108,11 +114,14 @@ function overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
 
     %% copy over the rest of the original file to the output file
     
-    disp('currently copying over the rest of the files');
     while ischar(tline) % while still reading the correct file
         fprintf(fout, '%s', tline);
         tline = fgets(fid); 
     end
+    
     fclose(fout);
     fclose(fid); %close files
-    toc; % a timer to view the runtime of the program
+    
+    disp('Finished running BTN file');
+end
+
