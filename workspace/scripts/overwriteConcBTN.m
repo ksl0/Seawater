@@ -1,13 +1,11 @@
-function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
+function [nlays,nrows] = overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Intended to overwrite the concentration data in .btn file 
 % with matrix data from matlab 
 % Returns the size of the matrix for use by other files
 %
 % Katie Li, katiesli16@gmail.com
-% June 22, 2015
-% 
-% Modified July 1, 2015
+% July 6, 2015
 % 
 % Stroud Water Research Center
 %
@@ -19,8 +17,8 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
 % 
 
 % EXAMPLE USAGE: 
-%  overwriteConcBTN('C5_43.mat', 'Test.btn', 'modified_btn.btn', 'disc1');
-%
+%  overwriteConcBTN('C5_30.mat', 'Test.btn', 'modified_btn.btn', 'disc1');
+
     BASE_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/';
     scriptsDir = 'scripts/';
     
@@ -29,12 +27,7 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     disp('Preparing to overwrite BTN file...');
     
     arr = matfile(matName); arr = arr.C; %extract variable from matfile
-    HEADER_TEXT = '103        1. '; %used to match on a header
-    nCCopy = 539; % number headers before you reach the concentration data
-    % for some reason, it seems to be correlated to the stretch in x
-    % direction
-    % as in disc1 - 539, but disc2 - 271
-    %TODO: calculate a way to find this numer
+    HEADER_TEXT = '103   '; %used to match on a header
 
 
     %% Start of script
@@ -46,7 +39,7 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     fid = fopen(baseFile,'r');
     
     disp(fout); disp(fid);
-    %%% skips past two headers
+    %%% copy the two headers
     c = 0;
     while c < 2
         tline = fgets(fid);
@@ -57,21 +50,24 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     tline = fgets(fid); %% read first line of baseFile into tline
     k = strsplit(tline, ' '); %separate them by line
  
-    nrows = str2double(cell2mat(k(2))); %conversion into comparable format
-    ncols = str2double(cell2mat(k(3)));
+    nlays = str2double(cell2mat(k(2))); %conversion into comparable format
+    nrows = str2double(cell2mat(k(3)));
     
-    X_initial = 400; %SET VALUE BASED ON INPUT MATRIX USUAL SIZE!!
-    Z_initial= 134; %default for slice 
-    ZSTRETCH = nrows/Z_initial;
-    XSTRETCH = ncols/X_initial;
+    nCCopy = 3*nlays + 3; % number headers before you reach the concentration data 
+    disp(nCCopy);
+    
+    X_initial = 400; %SET VALUE BASED ON INPUT MATRIX USUAL SIZE
+    Z_initial= 134; %default for slices, in comparison to old
+    ZSTRETCH = nlays/Z_initial;
+    XSTRETCH = nrows/X_initial;
     % the X and Z discretization
     
     cd(strcat(BASE_DIR, scriptsDir)); % go to the scripts directory
     arr = discretizeArray(arr, XSTRETCH, ZSTRETCH);
     [rows, cols] = size(arr); %save size of salinity matrix    
      
-    assert(ncols == cols);   %check and print out sizes
-    assert(nrows == rows);
+    assert(nrows == cols);   %check and print out sizes
+    assert(nlays == rows);
     
     time = datestr(now, 29); %get current date
     %Write header for SEAWATBTN file
@@ -119,11 +115,21 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
         tline = fgets(fid); 
         c = c + 1;
     end
-    assert(c == 8); % you need to have 8 lines only
+    assert(c == 8); % Assert statement for specific format
+                    % If c > 8 , it is likely that the wrong lines were
+                    % overwritten
+   
+    fclose(fout); %close files
+    fclose(fid);
     
-    fclose(fout);
-    fclose(fid); %close files
     
+    % move over files to correct locations
+    cd(strcat(BASE_DIR, inputFolderName));
+    
+    copyfile(baseFile, strcat('old', baseFile)); % create a copy of old file
+    movefile(outFileName, baseFile); % overwrite file
+    
+    cd(strcat(BASE_DIR, scriptsDir));
     disp('Finished running BTN file');
 end
 

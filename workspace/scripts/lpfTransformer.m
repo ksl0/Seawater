@@ -41,13 +41,17 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     fid = fopen(INPUT_FILE, 'r');
     
     cd(strcat(BASE_DIR, scriptsDir)); %get back to scripts directory
-%    arr = mapArray(Profile);  %convert the array (of values 0-3) to conductivity values
+    % arr = mapArray(Profile);  %convert the array (of values 0-3) to conductivity values
     
-    % transform array to correct dimensions based on discretization
+    % transform array to correct dimensions based on discretization,
+    % orientation
     newArr = discretizeArray(arr, XSTRETCH, ZSTRETCH);
+    newArr = flip(newArr,2); %flip the array 180 degrees
     
-    imagesc(newArr); %visualize output array
+    colormap(gray);
+    imagesc(unMapArray(newArr)); %visualize output array
     [row, ~] = size(newArr); 
+
     
     %% Write new header material
     k = []; %indicator value for header
@@ -80,6 +84,13 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
 	
     fclose(fid); % close files
     fclose(fout);
-
+    
+    % move over files to correct locations
+    cd(strcat(BASE_DIR, inputFolderName));
+    
+    movefile(inputFile, strcat('old', inputFile)); %create a copy
+    movefile(OUTPUT_NAME, inputFile);
+  
+    cd(strcat(BASE_DIR, scriptsDir)); % go back to old directory
     disp('finished overwriting program'); %indicate to user file done
 end
