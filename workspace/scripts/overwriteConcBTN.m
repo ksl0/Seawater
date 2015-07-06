@@ -113,11 +113,13 @@ function [nrows,ncols] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
 
 
     %% copy over the rest of the original file to the output file
-    
+    c = 0;
     while ischar(tline) % while still reading the correct file
         fprintf(fout, '%s', tline);
         tline = fgets(fid); 
+        c = c + 1;
     end
+    assert(c == 8); % you need to have 8 lines only
     
     fclose(fout);
     fclose(fid); %close files
