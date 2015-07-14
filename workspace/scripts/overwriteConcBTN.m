@@ -1,4 +1,4 @@
-function [nlays,nrows] = overwriteConcBTN(matName, baseFile, outFileName,inputFolderName)
+function [nlays,nrows] = overwriteConcBTN(matName, baseFile,inputFolderName)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Intended to overwrite the concentration data in .btn file 
 % with matrix data from matlab 
@@ -17,12 +17,13 @@ function [nlays,nrows] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
 % 
 
 % EXAMPLE USAGE: 
-%  overwriteConcBTN('C5_30.mat', 'Test.btn', 'modified_btn.btn', 'disc1');
+% overwriteConcBTN('C5_30.mat', 'Test.btn','disc134_800/profile5.30.mat');
 
     BASE_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/';
-    scriptsDir = 'scripts/';
+    scriptsDir = strcat(BASE_DIR, 'scripts/');
+    inFileDir = strcat(BASE_DIR, inputFolderName);
     
-    cd(strcat(BASE_DIR, scriptsDir)); % go to the scripts directory
+    cd(scriptsDir);
     
     disp('Preparing to overwrite BTN file...');
     
@@ -32,7 +33,8 @@ function [nlays,nrows] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
 
     %% Start of script
     
-    cd(strcat(BASE_DIR, inputFolderName)); %go the input file directory
+    cd(inFileDir); %go the input file directory
+    outFileName = 'temp';
     fout = fopen(outFileName, 'wt');
     %columns from left to right go sea to landward
     % solute concentrations should be in ML-3
@@ -62,7 +64,7 @@ function [nlays,nrows] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     XSTRETCH = nrows/X_initial;
     % the X and Z discretization
     
-    cd(strcat(BASE_DIR, scriptsDir)); % go to the scripts directory
+    cd(scriptsDir); % go to the scripts directory
     arr = discretizeArray(arr, XSTRETCH, ZSTRETCH);
     [rows, cols] = size(arr); %save size of salinity matrix    
      
@@ -122,14 +124,12 @@ function [nlays,nrows] = overwriteConcBTN(matName, baseFile, outFileName,inputFo
     fclose(fout); %close files
     fclose(fid);
     
-    
-    % move over files to correct locations
-    cd(strcat(BASE_DIR, inputFolderName));
+    cd(inFileDir);% move over files to correct locations
     
     copyfile(baseFile, strcat('old', baseFile)); % create a copy of old file
     movefile(outFileName, baseFile); % overwrite file
     
-    cd(strcat(BASE_DIR, scriptsDir));
+    cd(scriptsDir); % go back to original file placement 
     disp('Finished running BTN file');
 end
 

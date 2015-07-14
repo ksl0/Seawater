@@ -10,10 +10,10 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     % author: Katie Li, katiesli16@gmail.com
     
     BASE_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/';
-    scriptsDir = 'scripts/';
+    scriptsDir = strcat(BASE_DIR, 'scripts/');
     HEADER_SUBSTRING = 'INTERNAL'; %indicates reaching a header line
     
-    cd(strcat(BASE_DIR, scriptsDir)); %start at the correct location
+    cd(scriptsDir); %start at the correct location
 
     Ss = 1e-4; %default value for specific storage
     X_initial = 400; Z_initial= 134; %default for slice 
@@ -40,7 +40,7 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     fout = fopen(OUTPUT_NAME, 'w');
     fid = fopen(INPUT_FILE, 'r');
     
-    cd(strcat(BASE_DIR, scriptsDir)); %get back to scripts directory
+    cd(scriptsDir); %get back to scripts directory
     % arr = mapArray(Profile);  %convert the array (of values 0-3) to conductivity values
     
     % transform array to correct dimensions based on discretization,
@@ -91,6 +91,6 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
     movefile(inputFile, strcat('old', inputFile)); %create a copy
     movefile(OUTPUT_NAME, inputFile);
   
-    cd(strcat(BASE_DIR, scriptsDir)); % go back to old directory
+    cd(scriptsDir); % go back to old directory
     disp('finished overwriting program'); %indicate to user file done
 end
