@@ -1,6 +1,6 @@
 % test script for the matrix modifier
 % 06 June 2013
-% You have to run this file in the same folder as the others
+
 % default values
 clay = 0; clayV = 1e-13;
 silt = 1; siltV = 1e-8;
