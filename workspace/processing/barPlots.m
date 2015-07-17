@@ -1,0 +1,32 @@
+function barPlots(lpf_profile, disc, folder)
+  % create summary plots for given profile and dispersivity that include
+  % * salinity distribution* fresh SGD discharge, saline SGD 
+  % discharge, and submarine grounwater discharge
+
+  hFig = figure;
+  subplot(4,1,2);
+  bar(y_km,(-Hv_out_fresh(1,:).*3600.*24./x_size./y_size),'Facecolor','b','Edgecolor','b')               
+  y_max=max(-Hv_out_fresh(1,:).*3600.*24./x_size./y_size);
+  hold on
+  plot([150 150],[0 10], ':','Color','k')
+
+  axis([0 200 0 y_max*1.2])
+  text(160,y_max*.75, 'Fresh SGD');
+
+  subplot(4,1,3);
+  bar(y_km,(-Hv_out_saline(1,:).*3600.*24./x_size./y_size),'Facecolor','r','Edgecolor','r')        %Creates a stacked bar plot                                            
+  plot([150 150],[0 10], ':','Color','k')
+  axis([0 200 0 y_max*1.2])
+  ylabel('q out [m/d]')
+  text(160,y_max*.75, 'Saline SGD');
+
+  subplot(4,1,4);
+  bar(y_km(1,1:y_cells-1),(-Hv_in_saline(1,:).*3600.*24./x_size./y_size),'Facecolor','r','Edgecolor','r')
+  plot([150 150],[-10 10], ':','Color','k')
+  axis([0 200 -y_max*1.2 0])
+  xlabel('Landward distance [km]')
+  text(160,-y_max*.5, 'Saline SGR');
+
+  fig_name1=sprintf('Salinity_profile_%s.tif', lpf_profile);
+  saveas(hFig,fig_name1);
+end 
