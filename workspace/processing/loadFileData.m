@@ -4,7 +4,7 @@
 %   dir = '~/Desktop/ModelingSeawater/workspace/disc134_800/profile5.30.mat';
 %   [m,c, f, h] = loadFileData(dir);
 
-function [mass, conc, flow, head] = loadFileData(input_file_directory)
+function [mass, conc, flow, head, concSimplified] = loadFileData(input_file_directory)
     cd(input_file_directory);
     
     MASS_FILE = 'TestA.mass'; %default filenames for SEAWAT output data
@@ -13,8 +13,8 @@ function [mass, conc, flow, head] = loadFileData(input_file_directory)
     BUD_FILE = 'Test.bud';
 
     mass =importdata(MASS_FILE);                                          
-    conc_data =readMT3D(CONC_FILE,'','','','',''); %get concentration data
-    conc = conc_data.values;
+    conc =readMT3D(CONC_FILE,'','','','',''); %get concentration data
+    concSimplified = rot90(squeeze(conc.values),3); %remove 1 dimension
     flow =readBud6(BUD_FILE);                                               
     head =readDat2(HEAD_FILE);
 end
