@@ -7,3 +7,4 @@ set(0,'defaultaxesfontsize',14);
 set(0,'defaulttextfontsize',14);
 
 BASEDIR = '/Users/katie/Desktop/ModelingSeawater/workspace';
+SCRIPTSDIR = strcat(BASEDIR, 'scripts/');

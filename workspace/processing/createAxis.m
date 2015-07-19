@@ -4,20 +4,24 @@ function [y_km, z] = createAxis(ycells, zcells)
     % July 15, 2015
     
     DISTANCE_Y = 200000; % default values for the distance of the plot
-    DISTANCE_Z = 402;
-    y_size = DISTANCE_Y/ycells;
-    z_size = DISTANCE_Z/zcells; 
+    DISTANCE_Z = double(402);
+    DEFAULT_Z = 134; % usual number
+    DEFAULT_Y = 400; 
+    y_size = DISTANCE_Y/DEFAULT_Y;
+    z_size = DISTANCE_Z/DEFAULT_Z; 
     
+    offset_z = zcells/DEFAULT_Z;
+    offset_y = ycells/DEFAULT_Y;
     %Defines y axis in kilometers
-    y(1,y_size)=zeros;   
+    y(1,ycells)=zeros;   
     for i=1:y_size 
-        y(1,i)=-(y_size/2)+(y_size)*i;                              
+        y(1,i)=(-(y_size/2)+(y_size)*i);                              
     end
     y_km=y./1000;                                                             
 
     %Define z axis in meters
-    z(z_size,1)=zeros;    
+    z(zcells,1)=zeros;    
     for i=1:z_size
-        z(z_count,1)=(z_size/2)-(z_size)*i;                               
+        z(i,1)=((z_size/2)-(z_size)*i);                               
     end
 end

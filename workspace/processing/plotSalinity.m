@@ -1,4 +1,4 @@
-function plotSalinity(lpf_profile, disc, concentrationMat, y_km, z)
+function plotSalinity(profile_num, disc, concentrationMat, y_km, z)
   % Creates a plot of salinity distribution and saves it within the current folder
   %     The concentrationMat should be in the 134 x 400 orientation, with
   %     the sea (higher salinity) on the lefthand side
@@ -12,7 +12,7 @@ function plotSalinity(lpf_profile, disc, concentrationMat, y_km, z)
   h=colorbar; %add a colorbar
   ylabel(h,'Salinity, ppt')
    
-  title(sprintf('Saltwater concentration in ppt in run %s %s', disc, lpf_profile))
+  title(sprintf('Saltwater concentration in ppt in run %s %s', disc, profile_num))
   ylabel('Depth (m)')
   xlabel('Landward distance, km')
 
@@ -21,7 +21,7 @@ function plotSalinity(lpf_profile, disc, concentrationMat, y_km, z)
   coasty=[-402 -200 0];
   plot(coastx, coasty, '--','Color','w') 
 
-  fig_name = sprintf('%s_%s_salinity.bmp', disc, lpf_profile);
+  fig_name = sprintf('%s_%s_salinity.bmp', disc, profile_num);
   hold off;
   saveas(hFig, fig_name);
 end
