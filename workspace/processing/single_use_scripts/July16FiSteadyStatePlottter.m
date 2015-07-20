@@ -1,6 +1,3 @@
-%%fuck this shit
-
-
 BASEDIR = '/Users/katie/Desktop/ModelingSeawater/workspace';
 mass_file = 'TestA.mass';
 PROFILES = {'profile5.30.mat', 'profile5.21.mat'};
@@ -32,11 +29,10 @@ for p = PROFILES
         total_mass_in_aquifer = m.data(:,7); %column 7 is the total mass in aquifer
         avg_mass = mean(total_mass_in_aquifer);
         mass_diff = (total_mass_in_aquifer-avg_mass)./avg_mass*100; %get percentage difference
-        time = m.data(:,1)./3.15569e7; %column 1 is the time, in years
         subplot(num_profiles, num_disc, plotNum);
-        plot(time,mass_diff, '-ks', ...  
+        plot(m.data(:,1),mass_diff, '-ks', ...  
         'LineWidth',2,...
-        'MarkerSize',6,...
+        'MarkerSize',1,...
         'MarkerEdgeColor','b',...
         'MarkerFaceColor', 'b');
         xlabel('time (years)');
@@ -47,9 +43,9 @@ for p = PROFILES
         cd(scripts_dir);
         filename = sprintf('%s_%sTotalMass.jpg', disc, profile);
         line(xlim,[0,0], 'Color', 'k'); %draw xaxis
-    % saveas(fig, filename);
-        %axis tight;
-        %axis([-50, 5000, 1.7*10^11, 2*10^11]); %set axis
+     % saveas(fig, filename);
+        axis tight;
+        axis([-50, 50000, -.5, .5]); %set axis
         plotNum = plotNum+1;
     end
 end
