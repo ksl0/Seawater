@@ -1,0 +1,15 @@
+The handle is invalid.
+ERROR           MSW call BitBlt failed.
+
+------------------- TRACEBACK -------------------------
+Module "Msw  " Message   0: file ".\msw.c   " line 493
+Module "Draw " Message  -1: file ".\drawmsw.c" line 4872
+Module "MItem" Message  -1: file ".\mitem.c " line 1963
+Module "Draw " Message  -1: file ".\drawinva.c" line 72
+Module "Event" Message  -1: file ".\event.c " line 2624
+Module "AMeshDocument" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AMeshDocument.cpp" line 5229
+Module "ACommandHandler" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\ACommandHandler.cpp" line 212
+Module "AApplication" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AApplication.cpp" line 1053
+Module "AApplication" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AApplication.cpp" line 1084
+Module "Err  " Message  -1: file ".\err.c   " line 2073
+-------------------------------------------------------

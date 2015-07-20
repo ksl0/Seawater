@@ -8,7 +8,7 @@ set PROFILES= (profile5.30.mat profile5.21.mat)
 (for %%n in %DISC% do (
   (for %%h in %PROFILES% do (
     CD C:\Users\Admin\Desktop\KatieLi\Seawater\workspace\%%n\%%h
-    C:\PROGRA~2\SWT_V4~1\exe\SWT_V4~1.EXE Test.nam
+    start C:\PROGRA~2\SWT_V4~1\exe\SWT_V4~1.EXE Test.nam
   )
   )
 )
