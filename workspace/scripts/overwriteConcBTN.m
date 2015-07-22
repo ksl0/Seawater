@@ -132,4 +132,3 @@ function [nlays,nrows] = overwriteConcBTN(matName, baseFile,inputFolderName)
     cd(scriptsDir); % go back to original file placement 
     disp('Finished running BTN file');
 end
-

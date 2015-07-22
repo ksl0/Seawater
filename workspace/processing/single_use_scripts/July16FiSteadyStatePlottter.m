@@ -35,9 +35,9 @@ for p = PROFILES
         'MarkerSize',1,...
         'MarkerEdgeColor','b',...
         'MarkerFaceColor', 'b');
-        xlabel('time (years)');
-        ylabel('%Change for Mass in Aquifer');
-        fig_title = sprintf('%d x %d, %s',z_cells, y_cells, profile);
+        xlabel('Time, s')
+        ylabel('Total mass, kg')
+        fig_title = sprintf('Steady State Check, %d x %d, %s',z_cells, y_cells, profile);
         title(fig_title);
         
         cd(scripts_dir);

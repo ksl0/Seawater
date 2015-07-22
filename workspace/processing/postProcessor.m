@@ -1,5 +1,5 @@
-function results = postProcessor(main_directory, input_directory,...
-                   x_cells, y_cells, z_cells, total_cells, profile)
+function [results, y_km,z, C, data] = postProcessor(main_directory, input_directory,...
+                   y_cells, z_cells, caseNum, runNum)
 %% A modified post processor to return important variables in the matrix
 % results from the outputs of a SEAWAT model.
 % ASSUMPTIONS
@@ -30,7 +30,7 @@ DISTANCE_X = 200000; %default values for size of simulation
 DISTANCE_Y = 200000; 
 DISTANCE_Z = 402;
 
-x_size = DISTANCE_X/x_cells;
+x_size = DISTANCE_X/y_cells;
 y_size = DISTANCE_Y/y_cells;
 z_size = DISTANCE_Z/z_cells;
 
@@ -43,7 +43,8 @@ y = y_km.*1000;%convert back to meters
 
 % import .mass, .unc file, .bud file, head file, 
 % IMPORTANT!! You must first open readMT3D by MFlab and add to path
-[~, ~, Flow, Head, C] =loadFileData(input_directory); %C indicated processed concentration file
+[Mass, Conc, Flow, Head, C] =loadFileData(input_directory); %C indicated processed concentration file
+data = {Mass, Conc, Flow, Head};
 [rows, ~] = size(C);
 
 %% Rotating and simplifiying dimensions of a matrix
@@ -160,8 +161,8 @@ results(1,16)=Cy;
 results(1,17)=Cz;
 
 %% less important variables
-results(1,1)=total_cells;
-results(1,2)=profile;
+results(1,1)=caseNum;
+results(1,2)=runNum;
 results(1,18)=min(min(C));
 results(1,19)=max(max(C));
 results(1,20)=max(max(Peclet_y));
@@ -169,11 +170,15 @@ results(1,21)=max(max(Peclet_z));
 results(1,11)=DCDT_inc; %<----------------Not correct!!
 results(1,12)=DCDT_dec; %<----------------Not correct!!
 
+results(1,22) = z_cells;
+results(1,23) = y_cells;
+
 %% Save file
 cd(main_directory);
-filename =sprintf('results%d%d.mat', total_cells, profile);
+filename =sprintf('results%d%d.mat', caseNum, runNum);
 disp(filename);
 
+cd(strcat(main_directory, 'processing'));
 %save(filename, results);
 %TODO: refactor the '3D' out of it
 end
