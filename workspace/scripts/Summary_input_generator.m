@@ -18,7 +18,7 @@ SCRIPTS_DIR = strcat(BASE_DIR, '/scripts');
 %Discretization, discz_x, where z represents vertical cell number and x
 %   represents the number of cells in the x direction
 DISC = {'disc134_800', 'disc134_1600', 'disc268_800', ...
-         'disc268_1600', 'disc536_800'}; 
+        'disc268_1600', 'disc536_800'}; 
 pattern_disc =  '(disc|_)';
 
 C0 = 5; run0 = 30; run1 = 21; %case and run numbers
@@ -58,8 +58,7 @@ for d = DISC
        
        [r, c] = overwriteConcBTN(BTN_INPUT, BTN_file, folder);
        lpfTransformer(r, c, folder, LPF_INPUT, LPF_file); 
-       fprintf('Finished writing input file for %s discretization \n',folder);
-       disp('');
+       fprintf('Finished writing input file for %s discretization \n\n',folder);
    end
 end
 toc;

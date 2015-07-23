@@ -25,7 +25,6 @@ STRETCH_Z = layers/nlay;
 fprintf('%d %d; %d %d \n', rows, nrow, layers, nlay);
 
 H_arr = discretizeArray(H_data,STRETCH_X,STRETCH_Z);
-disp(size(H_arr));
 
 %% start to write to other file
 HEADER_TEXT = 'INTERNAL 1 (FREE)';
@@ -58,13 +57,12 @@ end
 %print out information for each layer 
 for i  = 1:layers
   fprintf(fout, '%s\n', HEADER_TEXT);
-  newHEAD= H_arr(:,i); % newHEAD is the array of head values 
+  newHEAD= H_arr(i,:); % newHEAD is the array of head values 
                          % from the completed simulation
   fprintf(fout, '%d\n', newHEAD);
 end
 
-% TODO: REMOVE THE COMMENT LINE!
-%movefile(TEMP_FILE, BAS_FILE);
+movefile(TEMP_FILE, BAS_FILE);
 cd(SCRIPTS_DIR);
 fclose(fout); %close files :) 
 fclose(fid);
