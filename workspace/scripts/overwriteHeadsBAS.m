@@ -17,20 +17,20 @@ function overwriteHeadsBAS(headFile,inputDir, rows, layers)
 H = readDat2(headFile);  %read in binary initial heads file 
 nrow = H.NROW; 
 nlay = numel(H.lays);
-H_data = squeeze(H.values);
+H_data = rot90(squeeze(H.values),3);
 
 %% map the old array to the correct dimensions
-STRETCH_X = rows/nrow;
-STRETCH_Z = layers/nlay; 
-assert(STRETCH_X > 0);
-assert(STRETCH_Z > 0);
-H_arr = discretizeArray(H_data,STRETCH_Z,STRETCH_X);
+STRETCH_X = rows/nrow; 
+STRETCH_Z = layers/nlay;
+fprintf('%d %d; %d %d \n', rows, nrow, layers, nlay);
+
+H_arr = discretizeArray(H_data,STRETCH_X,STRETCH_Z);
 disp(size(H_arr));
 
 %% start to write to other file
 HEADER_TEXT = 'INTERNAL 1 (FREE)';
 HEADER_SUBSTRING = 'INTERNAL';
-BAS_FILE = 'TEST.bas';
+BAS_FILE = 'Test.bas';
 TEMP_FILE = 'TestX.bas';
 SCRIPTS_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/scripts';
 
@@ -63,6 +63,8 @@ for i  = 1:layers
   fprintf(fout, '%d\n', newHEAD);
 end
 
+% TODO: REMOVE THE COMMENT LINE!
+%movefile(TEMP_FILE, BAS_FILE);
 cd(SCRIPTS_DIR);
 fclose(fout); %close files :) 
 fclose(fid);
