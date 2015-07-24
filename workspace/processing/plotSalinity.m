@@ -38,8 +38,7 @@ function plotSalinity(profile_num, disc, concentrationMat, y_km, z)
   axis([0 200000 -402 0])
   
   hold off;
-  
-  % write figure to disk
-  fig_name = sprintf('%s_%s_salinity.png', disc, profile_num);
+  % write figure to disk in the figures folder of current folder
+  fig_name = sprintf('%s/figures/%s_%s_salinity.png', pwd, disc, profile_num);
   saveas(hFig, fig_name, 'png');
 end
