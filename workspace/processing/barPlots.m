@@ -1,4 +1,4 @@
-function barPlots(title_details, Hv_out_fresh, Hv_out_saline,Hv_in_saline)
+function barPlots(title_details, y_km, Hv_out_fresh, Hv_out_saline,Hv_in_saline)
   % create summary plots for given profile and dispersivity that include
   % * salinity distribution* fresh SGD discharge, saline SGD 
   % discharge, and submarine grounwater discharge

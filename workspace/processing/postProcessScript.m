@@ -23,9 +23,11 @@ for d = DISC
         
         input_dir = strcat(MAIN_DIR, '/', disc, '/', profile);
         
-        
-        [results, y_km, z, C, data] = postProcessor(MAIN_DIR, input_dir, y_cells, z_cells, caseNum,runNum);
+        [results, y_km, z, C, data, H_dat] = postProcessor(MAIN_DIR, input_dir, y_cells, z_cells, caseNum,runNum);
+        % create salinity and bar plots
         plotSalinity(profile, disc , C, y_km, z)
+        plot_title = sprintf('%s %s', profile, disc);
+        barPlots(plot_title, y_km, H_dat.Hv_out_fresh, H_dat.Hv_out_saline,H_dat.Hv_in_saline)
         resultsMat(i, :) = results;
         i = i+1;
     end

@@ -1,4 +1,4 @@
-function [results, y_km,z, C, data] = postProcessor(main_directory, input_directory,...
+function [results, y_km,z, C, data, H_data] = postProcessor(main_directory, input_directory,...
                    y_cells, z_cells, caseNum, runNum)
 %% A modified post processor to return important variables in the matrix
 % results from the outputs of a SEAWAT model.
@@ -80,6 +80,7 @@ Hv_in_saline=Hv_in(:,1:y_cells-1);                                  %Hv_in_salin
 Hm_in_fresh=Hv_in_fresh.*DENSITY_FRESH;                                %Hm_in_fresh is fresh mass flux into the profile in each cell (kg/s)
 Hm_in_saline=Hv_in_saline.*DENSITY_SALINE;                             %Hm_in_saline is saline mass flux into the profile in each cell (kg/s)
 
+
 Sum_Hm_in=sum(sum(sum(Hm_in_fresh)))+sum(sum(sum(Hm_in_saline)));   %Total mass flux into the profile from prescribed head boundaries (kg/s)--compare to list file
 
 fraction_saline=C/35;                                               %Calculate fraction saline at each cell
@@ -107,6 +108,13 @@ Sv_out_saline=Sv_out.*fraction_saline;                              %Sv_out_sali
 Sm_out_fresh=Sv_out_fresh.*DENSITY_FRESH;                              %Sm_out_fresh is fresh mass flux (-) change in storage for each cell (kg/s)
 Sm_out_saline=Sv_out_saline.*DENSITY_SALINE;                           %Sm_out_saline is fresh mass flux (-) change in storage for each cell(kg/s)
 Storage_loss=abs(sum(sum(sum(Sm_out_fresh)))+sum(sum(sum(Sm_out_saline))));
+
+%Save the volumetric flux to an 'H' variable
+Hv_data = [];
+Hv_data.Hv_in_fresh = Hv_in_fresh;
+Hv_data.Hv_in_saline = Hv_in_saline;
+Hv_data.Hv_out_saline = Hv_out_saline;
+Hv_data.Hv_out_fresh = Hv_out_fresh;
 
 %Need to figure out how to handle DCDT--requires multiplying by the
 %length of the last transport step--I need to figure out where to
