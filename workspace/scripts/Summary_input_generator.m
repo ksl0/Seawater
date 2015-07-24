@@ -18,7 +18,8 @@ SCRIPTS_DIR = strcat(BASE_DIR, '/scripts');
 %Discretization, discz_x, where z represents vertical cell number and x
 %   represents the number of cells in the x direction
 DISC = {'disc134_800', 'disc134_1600', 'disc268_800', ...
-        'disc268_1600', 'disc536_800'}; 
+       'disc268_1600', 'disc536_800'}; 
+
 pattern_disc =  '(disc|_)';
 
 C0 = 5; run0 = 30; run1 = 21; %case and run numbers
