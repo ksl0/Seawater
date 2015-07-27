@@ -1,7 +1,6 @@
 clear all;
-clc;
-MAIN_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/';
-
+%MAIN_DIR = '/Users/katie/Desktop/ModelingSeawater/workspace/';
+MAIN_DIR = 'C:\Users\Admin\Desktop\KatieLi\Seawater\workspace\';
 PROFILES= {'profile5.30.mat'};
 DISC= {'disc134_800'};
 
