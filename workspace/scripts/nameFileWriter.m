@@ -17,11 +17,11 @@ fprintf(fid, 'ADV 23 ..\\%s\\Test.adv\n', profile);
 fprintf(fid, 'DSP 24 Test.dsp\n'); %DSP file is unique to dispersivity run
 fprintf(fid, 'SSM 25 ..\\%s\\Test.ssm\n', profile); %included in each of the folders 
 fprintf(fid, 'GCG 26 ..\\%s\\Test.gcg\n', profile);
+fprintf(fid, 'LMT6 28 ..\\%s\\Test.lmt\n', profile);
 fprintf(fid, 'DATA 199 ..\\%s\\Test.cnf\n', profile);
 fprintf(fid, 'DATA(BINARY) 201 TestA.ucn\n');
 fprintf(fid, 'DATA 401 TestA.mto\n');
 fprintf(fid, 'DATA 601 TestA.mass\n');
-fprintf(fid, 'LMT6 28 Test.lmt\n');
 fprintf(fid, 'DATA(BINARY) 12 Test.bhd REPLACE\n');
 fprintf(fid, 'DATA(BINARY) 11 Test.bud REPLACE\n');
 

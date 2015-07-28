@@ -10,10 +10,10 @@ ADV 23 ..\profile5.30\Test.adv
 DSP 24 Test.dsp
 SSM 25 ..\profile5.30\Test.ssm
 GCG 26 ..\profile5.30\Test.gcg
+LMT6 28 ..\profile5.30\Test.lmt
 DATA 199 ..\profile5.30\Test.cnf
 DATA(BINARY) 201 TestA.ucn
 DATA 401 TestA.mto
 DATA 601 TestA.mass
-LMT6 28 Test.lmt
 DATA(BINARY) 12 Test.bhd REPLACE
 DATA(BINARY) 11 Test.bud REPLACE

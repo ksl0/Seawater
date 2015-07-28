@@ -12,11 +12,14 @@ function dspWriter(nrow, nlay, al, outputFolder)
     scripts_dir = '/Users/katie/Desktop/ModelingSeawater/workspace/scripts';
 
     % ratio of horizontal transverse dispersivity to longitudinal dispersivity 
-    TRPT = 1e-3 ;
+    TRPT = 1;
+    TRPT_STRING = sprintf('%d*1.000000000000E-00%d', nlay, TRPT);
     % ratio of vertical transverse dispersivity to longitudinal dispersivity 
-    TRPV = 1e-4;
+    TRPV = 2;
+    TRPV_STRING = sprintf('%d*1.000000000000E-00%d', nlay, TRPV);
     % effective molecular diffision coefficient
-    DMCOEF = 1e-11;
+    DMCOEF = 11;
+    DMCOEF_STRING = sprintf('%d*1.000000000000E-0%d', nlay, DMCOEF);
     OUTPUT_NAME = 'Test.dsp';
 
     fid= fopen(OUTPUT_NAME, 'w');
@@ -33,13 +36,13 @@ function dspWriter(nrow, nlay, al, outputFolder)
 
     % C2: write horizontal transverse dispersivity 
     fprintf(fid, '%s\n', HEADER_TEXT); 
-    fprintf(fid, '%6.12E\n', TRPT*nlay); 
+    fprintf(fid, '%s\n', TRPT_STRING); 
     % C3: write horizontal transverse dispersivity 
     fprintf(fid, '%s\n', HEADER_TEXT); 
-    fprintf(fid, '%6.12E\n', TRPV*nlay); 
+    fprintf(fid, '%s\n', TRPV_STRING); 
     % C4: write effective molecular diffusion coefficient
     fprintf(fid, '%s\n', HEADER_TEXT); 
-    fprintf(fid, '%6.12E\n', DMCOEF*nlay);
+    fprintf(fid, '%s\n', DMCOEF_STRING);
       	
     fclose(fid); % close file 
     disp('finished writing dispersion file for MT3DMS'); %indicate to user file done
