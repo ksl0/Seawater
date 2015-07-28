@@ -17,7 +17,7 @@ function dspWriter(nrow, nlay, al, outputFolder)
     TRPV = 1e-4;
     % effective molecular diffision coefficient
     DMCOEF = 1e-11;
-    OUTPUT_NAME = 'NewTest.dsp';
+    OUTPUT_NAME = 'Test.dsp';
 
     fid= fopen(OUTPUT_NAME, 'w');
     layer_al = ones(nrow,1).*al; %create array filled with values of 

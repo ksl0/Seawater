@@ -1,0 +1,19 @@
+LIST 13 Test.lst
+DIS 14 ..\profile5.30\Test.dis
+BAS6 15 ..\profile5.30\Test.bas
+OC 18 ..\profile5.30\Test.oc
+LPF 19 ..\profile5.30\Test.lpf
+GMG 20 ..\profile5.30\Test.gmg
+VDF 21 ..\profile5.30\Test.vdf
+BTN 22 ..\profile5.30\Test.btn
+ADV 23 ..\profile5.30\Test.adv
+DSP 24 Test.dsp
+SSM 25 ..\profile5.30\Test.ssm
+GCG 26 ..\profile5.30\Test.gcg
+DATA 199 ..\profile5.30\Test.cnf
+DATA(BINARY) 201 TestA.ucn
+DATA 401 TestA.mto
+DATA 601 TestA.mass
+LMT6 28 Test.lmt
+DATA(BINARY) 12 Test.bhd REPLACE
+DATA(BINARY) 11 Test.bud REPLACE
