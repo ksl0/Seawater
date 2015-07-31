@@ -1,0 +1,28 @@
+The handle is invalid.
+ERROR           MSW call BitBlt failed.
+
+------------------- TRACEBACK -------------------------
+Module "Msw  " Message   0: file ".\msw.c   " line 493
+Module "Draw " Message  -1: file ".\drawmsw.c" line 4872
+Module "Draw " Message  -1: file ".\drawinva.c" line 72
+Module "AExportTemplate" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AExportTemplate.cpp" line 1319
+Module "AExportTemplate" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AExportTemplate.cpp" line 582
+Module "ACommandHandler" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\ACommandHandler.cpp" line 212
+Module "AApplication" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AApplication.cpp" line 1053
+Module "AApplication" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AApplication.cpp" line 1084
+Module "Err  " Message  -1: file ".\err.c   " line 2073
+-------------------------------------------------------
+The handle is invalid.
+ERROR           MSW call BitBlt failed.
+
+------------------- TRACEBACK -------------------------
+Module "Msw  " Message   0: file ".\msw.c   " line 493
+Module "Draw " Message  -1: file ".\drawmsw.c" line 4872
+Module "Draw " Message  -1: file ".\drawinva.c" line 72
+Module "AExportTemplate" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AExportTemplate.cpp" line 1319
+Module "AExportTemplate" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AExportTemplate.cpp" line 582
+Module "ACommandHandler" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\ACommandHandler.cpp" line 212
+Module "AApplication" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AApplication.cpp" line 1053
+Module "AApplication" Message  -1: file "G:\ArgusONE-Shipping Version\ArgusOne\Sources\AApplication.cpp" line 1084
+Module "Err  " Message  -1: file ".\err.c   " line 2073
+-------------------------------------------------------

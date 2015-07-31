@@ -22,19 +22,22 @@ DISC = {'disc134_800', 'disc134_1600', 'disc268_800', ...
 
 pattern_disc =  '(disc|_)';
 
-C0 = 5; run0 = 30; run1 = 21; %case and run numbers
-TOTAL_PROFILES = {[C0, run0];[C0,run1]}; %holder for all profiles
-[profiles, ~] = size(TOTAL_PROFILES);
+PROFILES = {'profile1.48.mat', 'profile1.19.mat', 'profile1.39.mat', ...
+          'profile5.42.mat', 'profile6.48.mat', 'profile6.5.mat', ...
+         'profile6.38.mat', 'profile6.13.mat'};
+        
+
+pattern_profile =  '(profile|\.|mat)';
+[profiles, ~] = size(PROFILES);
 
 tic;         
 % create input files for every discretization, and hydraulic cond. profile
 cd(SCRIPTS_DIR); %ensure in correct place
 for d = DISC 
-   for l= 1:profiles 
-       disc = char(d);
-       pCase = TOTAL_PROFILES{l}(1); %set profile case and run numbers
-       pRun = TOTAL_PROFILES{l}(2); 
-       
+   for p= PROFILES 
+       disc = char(d); profile = char(p);
+       bar = regexp(profile, pattern_profile, 'split');
+       pCase = str2double(bar{2}); pRun = str2double(bar{3}); %extract the numbers 
        % get the discretization rows and layers
        foo = regexp(disc, pattern_disc, 'split');
        nLayers = str2double(foo{2});
@@ -57,8 +60,8 @@ for d = DISC
        %overwrite the Head files
        overwriteHeadsBAS(HEAD_INPUT,input_dir, nrows, nLayers);
        
-       [r, c] = overwriteConcBTN(BTN_INPUT, BTN_file, folder);
-       lpfTransformer(r, c, folder, LPF_INPUT, LPF_file); 
+   %    [r, c] = overwriteConcBTN(BTN_INPUT, BTN_file, folder);
+       lpfTransformer(r, c, folder, LPF_INPUT, pCase, LPF_file); 
        fprintf('Finished writing input file for %s discretization \n\n',folder);
    end
 end

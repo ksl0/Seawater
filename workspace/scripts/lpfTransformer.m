@@ -1,4 +1,4 @@
-function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
+function lpfTransformer(nrows, ncols, inputFolderName, matFile, caseNum, inputFile)
     % A file that overwrites an exisiting LPF file to it's format
     % usage: for disc1, a cell of 268 rows x 800 columns, run: 
     %    lpfTransformer(268, 800, 'disc1', 'Profile5.47.mat', 'Test.lpf');
@@ -23,7 +23,7 @@ function lpfTransformer(nrows, ncols, inputFolderName, matFile, inputFile)
  
     OUTPUT_NAME = 'modified_lpf.lpf';
     INPUT_FILE = inputFile;
-    MATLAB_ARRAY = matFile; 
+    MATLAB_ARRAY = sprintf('/Users/katie/Desktop/ModelingSeawater/Input_data/Profiles/Case%d/%s',caseNum, matFile); 
     load(MATLAB_ARRAY); arr = Profile; %load MATLAB array with hydraulic conductivity, 'Profile'
 
     %headers to write to file
